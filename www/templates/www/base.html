@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <!-- Site Title-->
+    <title>Doce y Uno</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans:400,700%7CMontserrat:400,700%7CPlayfair+Display:400,400i,700,700i,900,900i">
+    <link rel="stylesheet" href="{% static 'www/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'www/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'www/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'www/css/menu.css' %}">
+    {% block css %}
+    {% endblock css %}
+		<!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="{% static 'images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+		<![endif]-->
+  </head>
+  <body>
+    <!-- Page-->
+    <div class="page text-center">
+      <header class="page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xg-stick-up-offset="46px" data-xxl-stick-up-offset="46px">
+            <div class="rd-navbar-inner">
+              <!-- RD Navbar Panel-->
+              <div class="rd-navbar-left-side">
+                <div class="rd-navbar-panel">
+                  <!-- RD Navbar Toggle-->
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                  <!-- RD Navbar Brand-->
+                  <div class="rd-navbar-brand"><a class="brand-name" href="{% url 'home' %}"><img class="img-responsive center-block" src="{% static 'www/images/logo.svg' %}" width="100" alt=""></a></div>
+                  <!-- RD Navbar Toggle-->
+                  <button class="rd-navbar-toggle-search-fixed d-lg-none d-tablet" data-rd-navbar-toggle=".rd-navbar-search-wrap-fixed"></button>
+                  <!-- RD Navbar Toggle-->
+                  <button class="d-lg-none d-tablet cb cb-mb cart-counter" data-counter="{{cart.item_count}}"><span class="fas fa-shopping-cart"></span></button>
+                </div>
+              </div>
+              <div class="rd-navbar-right-side">
+                <div class="rd-navbar-nav-wrap d-inline-block">
+                  <!-- RD Navbar Nav-->
+                  <ul class="rd-navbar-nav">
+                    <li class="{% if request.resolver_match.url_name == 'how-it-works' %}active{% endif %}"><a href="#">¿Cómo funciona?</a></li>
+                    <li class=""><a href="#">Tienda</a></li>
+                    <li></li>
+                    <a href="{% url 'product-customizer' %}" class="btn btn-xs btn-primary">Diseña ahora</a>
+                    {% if user.is_authenticated %}
+                    <li><a class="btn btn-xs text-secondary" href="#">Mi cuenta</a>
+                      <ul class="rd-navbar-dropdown">
+                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="#">Mis Compras</a></li>
+                        <li><a href="#">Cobrar</a></li>
+                        <li><a href="{% url 'logout' %}">Salir</a></li>
+                      </ul>
+                    </li>
+                    {% else %}
+                      <a href="{% url 'login' %}" class="btn btn-xs text-secondary">Login</a>
+                    {% endif %}
+                  </ul>
+                </div>
+                <div class="rd-navbar-search-wrap-fixed d-inline-block">
+                  <div class="rd-navbar-search-wrap">
+                    <div class="rd-navbar-search"><a class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search" href="#"><span></span></a>
+                      <form class="rd-search rd-navbar-search-custom" action="search-results.html" data-search-live="rd-search-results-live" method="GET">
+                        <div class="form-group">
+                          <label class="form-label" for="rd-navbar-search-form-input">Search</label>
+                          <input class="rd-navbar-search-form-input form-control form-control-gray-lightest" id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off">
+                          <button type="submit"><span class="icon icon-xs fa fa-search"></span></button>
+                        </div>
+                        <div class="rd-search-results-live d-none d-xl-block" id="rd-search-results-live"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- RD Navbar Toggle-->
+                <button class="rd-navbar-toggle-search d-none d-lg-inline-block veil-tablet" data-rd-navbar-toggle=".rd-navbar-search-wrap"></button>
+                <a href="{% url 'cart' %}" class="d-none d-lg-inline-block veil-tablet cb cb-desk cart-counter" data-counter="{{cart.item_count}}"><span class="fas fa-shopping-cart cart-icon"></span></a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+{% block content %}
+{% endblock content %}
+      <footer class="page-footer bg-shark section-80 section-lg-top-120 section-lg-bottom-60">
+        <div class="container-wide">
+          <div class="row justify-content-sm-center inset-xxl-left-55 row-40">
+            <div class="col-sm-6 col-md-5 col-xl-2 col-xxl-2 text-xxl-right">
+              <!-- List Marked-->
+              <ul class="list list-marked list-marked-white text-left inset-xxl-left-75">
+                <li><a class="text-bermuda" href="#">¿Cómo funciona?</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-5 col-xl-2 col-xxl-2 text-xxl-right">
+              <!-- List Marked-->
+              <ul class="list list-marked list-marked-white text-left inset-xxl-left-100">
+                <li><a class="text-bermuda" href="#">Tienda</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-5 col-xl-2 col-xxl-2 text-xxl-center">
+              <!-- List Marked-->
+              <ul class="list list-marked list-marked-white text-left inset-xxl-left-140">
+                <li><a class="text-bermuda" href="#">Diseña ahora</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-5 col-xl-2 col-xxl-2 text-xxl-center">
+              <!-- List Marked-->
+              <ul class="list list-marked list-marked-white text-left inset-xxl-left-140">
+                <li><a class="text-bermuda" href="#">Blog</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row justify-content-sm-center align-items-sm-center justify-content-xxl-between offset-xl-top-75 row-40 offset-top-50">
+            <div class="col-md-3 col-lg-5 col-xl-5 col-xxl-4 text-xxl-center text-md-left"><a class="d-inline-block" href="index.html"><img class="img-responsive center-block" src="{% static 'www/images/logo-negative.svg' %}" width="179" height="54" alt=""></a></div>
+            <div class="col-md-7 col-lg-5 col-xl-5 text-xxl-center">
+              <p class="text-small">&#169; <span class="copyright-year"></span> - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Java script-->
+    <script src="{% static 'www/js/core.min.js' %}"></script>
+    <script src="{% static 'www/js/script.js' %}"></script>
+    {% if not user.is_authenticated %}
+      <script src="{% static 'www/js/initCartCounter.js' %}"></script>
+    {% endif %}
+    {% block js %}
+    {% endblock js %}
+  </body>
+</html>

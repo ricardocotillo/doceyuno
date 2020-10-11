@@ -1,0 +1,15 @@
+.search-button {
+  cursor: pointer;
+}
+
+.card-title, .card-subtitle {
+  text-align: center;
+}
+
+.card {
+  border: none;
+}
+
+#product-section, #product-section .card {
+  background: #f6f6f9;
+}

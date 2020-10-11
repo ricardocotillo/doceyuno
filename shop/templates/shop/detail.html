@@ -1,0 +1,138 @@
+{% extends 'www/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'shop/css/detail.css' %}">
+{% endblock css %}
+
+{% block content %}
+<br>
+<hr>
+<main class="page-content">
+  <br><br>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="product-image" src="{{object.image.url}}" alt="">
+        </div>
+        <div class="col-md-6">
+          <h3 class="text-left">{{object.name}}<br><small>por {{object.user.username}}</small></h3>
+          <p class="text-left">{{object.description}}</p>
+          <br>
+          <div class="card product-form">
+            <form method="post" action="{% url 'cart-add' tshirt.id %}" class="card-body" id="add-form">
+              {% csrf_token %}
+              {{form.color}}
+              {{form.update}}
+              {% if not user.is_authenticated %}
+                <input type="hidden" name="productId" value="{{tshirt.id}}">
+                <input type="hidden" name="price" value="{{tshirt.price}}">
+                <input type="hidden" name="productName" value="{{tshirt.name}}">
+                <input type="hidden" name="image" value="{{tshirt.image.url}}">
+              {% endif %}
+              <div class="form-group row justify-content-between">
+                <div class="col-sm-6">
+                  <label class="text-left" for="id_size">Talla</label>
+                  {{form.size}}
+                </div>
+                <div class="col-sm-3">
+                  <label class="text-left" for="id_quantity">Cantidad</label>
+                  {{form.quantity}}
+                </div>
+              </div>
+              <div class="row">
+                {% for color in object.colors.all %}
+                <div class="col-1">
+                  <div class="color" data-color-id="{{color.hex_code}}" style="background-color: {{color}}">
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-block"><span class="icon icon-sm fas fa-cart-plus"></span>Agregar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-left">{{object.total_sales}} vendidos</p>
+            </div>
+          </div>
+          {% if object.end_date %}
+          <div id="countdown-wrapper" class="row" data-end-date="{{object.end_date.isoformat}}">
+            <div class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <h3 id="countdown-days">00</h3>
+                  <h6 class="timer">Días</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <h3 id="countdown-hours">00</h3>
+                  <h6 class="timer">Horas</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <h3 id="countdown-minutes">00</h3>
+                  <h6 class="timer">Minutos</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card">
+                <div class="card-body">
+                  <h3 id="countdown-seconds">00</h3>
+                  <h6 class="timer">Segundos</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="text-left">
+            <h6>Información de envío</h6>
+            <p>Todos los productos se imprimen al finalizar la campaña</p>
+            <p>Si haces tu orden ahora, llegará a tu domicilio el 9 de julio, 2020</p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <p>
+            Comparte este diseño
+          </p>
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-outline-dark"><span class="fab fa-facebook-f fa-lg"></span> Facebook</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-outline-dark"><span class="fab fa-instagram fa-lg"></span> Instagram</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <br><br><br>
+  </div>
+</main>
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'shop/js/countdown.js' %}"></script>
+<script src="{% static 'shop/js/colorPicker.js' %}"></script>
+  {% if not user.is_authenticated %}
+  <script src="{% static 'shop/js/addToCart.js' %}"></script>
+  {% endif %}
+{% endblock js %}

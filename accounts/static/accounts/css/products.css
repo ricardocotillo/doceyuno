@@ -1,0 +1,11 @@
+.delete-icon {
+    cursor: pointer;
+}
+
+.page-content {
+    min-height: 55vh;
+}
+
+.card {
+    margin-bottom: 20px;
+}

@@ -1,0 +1,148 @@
+{% extends 'www/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'www/css/main.css' %}">
+{% endblock css %}
+{% block content %}
+  <div class="swiper-container-wrap">
+    <div class="swiper-container swiper-slider" data-height="" data-min-height="300px" data-autoplay="false" data-simulate-touch="false" data-autoplay="4200">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" data-slide-bg="{% static 'www/images/doceyuno_portada.webp' %}">
+          <div class="swiper-slide-caption">
+            <div class="inset-xl-left-35 inset-xxl-left-125">
+              <div class="container-wide container-wide-custom">
+                <div class="row justify-content-sm-center justify-content-xl-start text-xl-left">
+                  <div class="col-md-10 col-xl-7">
+                    <div class="text-spacing-inverse-20 text-white"><h1>UNA IDEA</h1></div>
+                    <div class="text-top inset-left-10">
+                      <h1>ES SUFICIENTE.</h1>
+                    </div>
+                    <div class="d-none d-xl-inline-block offset-top-25">
+                      <hr class="divider divider-xl bg-default">
+                    </div>
+                    <div class="d-inline-block text-top offset-lg-top-10 inset-left-10">
+                      <h4 class="text-uppercase">CREA Y VENDE ONLINE</h4>
+                    </div>
+                    <div class="offset-top-20"><a class="btn btn-width-165 btn-bermuda" href="{% url 'product-customizer' %}">COMIENZA</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="page-content">
+    <section class="section-80 section-md-0 bg-shark">
+      <div class="row no-gutters justify-content-sm-center row-30 row-lg-0">
+        <div class="col-sm-6 col-md-6 col-xl-3 inset-left-15 inset-right-15 inset-lg-left-0 inset-lg-right-0">
+          <figure class="thumbnail-terry thumbnail-terry-modern"><a href="sale-single.html"><img width="480" height="360" src="{% static 'www/images/doceyuno_local_business.webp' %}" alt=""></a>
+            <figcaption class="text-left">
+              <div class="figcaption-caption">
+                <h4 class="thumbnail-terry-title text-spacing-40">EMPRENDIMIENTO</h4>
+                <p class="thumbnail-terry-desc text-white-07 offset-top-5">Doce y Uno apoya la creatividad de los emprededores peruanos</p>
+              </div>
+              <div class="thumbnail-terry-btn-wrap text-lg-right offset-top-10 offset-md-top-0"><a class="btn btn-thumbnail-terry btn-rect btn-icon btn-icon-right btn-primary" href="sale-single.html"><span class="icon icon-xs mdi mdi-arrow-right d-none d-md-inline-block"></span>Conoce Más</a></div>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-sm-6 col-md-6 col-xl-3 inset-left-15 inset-right-15 inset-lg-left-0 inset-lg-right-0">
+          <figure class="thumbnail-terry thumbnail-terry-modern"><a href="sale-single.html"><img width="480" height="360" src="{% static 'www/images/doceyuno_creatividad.webp' %}" alt=""></a>
+            <figcaption class="text-left">
+              <div class="figcaption-caption">
+                <h4 class="thumbnail-terry-title text-spacing-40 text-uppercase">CREATIVIDAD</h4>
+                <p class="thumbnail-terry-desc text-white-07 offset-top-5">Doce y Uno cree en la creatividad peruana</p>
+              </div>
+              <div class="thumbnail-terry-btn-wrap text-lg-right offset-top-10 offset-md-top-0"><a class="btn btn-thumbnail-terry btn-rect btn-icon btn-icon-right btn-primary" href="sale-single.html"><span class="icon icon-xs mdi mdi-arrow-right d-none d-md-inline-block"></span>Conoce Más</a></div>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-sm-6 col-md-6 col-xl-3 inset-left-15 inset-right-15 inset-lg-left-0 inset-lg-right-0">
+          <figure class="thumbnail-terry thumbnail-terry-modern"><a href="sale-single.html"><img width="480" height="360" src="{% static 'www/images/doceyuno_ecommerce_facil.webp' %}" alt=""></a>
+            <figcaption class="text-left">
+              <div class="figcaption-caption">
+                <h4 class="thumbnail-terry-title text-spacing-40 text-uppercase">E-COMMERCE FÁCIL</h4>
+                <p class="thumbnail-terry-desc text-white-07 offset-top-5">Doce y Uno se encarga de lo más complicado</p>
+              </div>
+              <div class="thumbnail-terry-btn-wrap text-lg-right offset-top-10 offset-md-top-0"><a class="btn btn-thumbnail-terry btn-rect btn-icon btn-icon-right btn-primary" href="sale-single.html"><span class="icon icon-xs mdi mdi-arrow-right d-none d-md-inline-block"></span>Conoce Más</a></div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="section-90 section-md-120 bg-selago">
+      <div class="inset-lg-left-35 inset-xxl-left-125 inset-lg-right-35 inset-xxl-right-125">
+        <div class="container container-wide-custom">
+          <div class="row justify-content-sm-center align-items-sm-center justify-content-xxl-between">
+            <div class="col-md-10 col-xl-5 col-xxl-4 text-left">
+              <hr class="divider hr-lg-left-0 bg-bermuda">
+              <div class="offset-top-20">
+                <h3 class="text-center text-lg-left">Busca productos <br class="d-none d-xxl-inline-block"> creados en Doce y Uno</h3>
+                <div class="offset-top-30 text-center text-lg-left">
+                  <form class="rd-search rd-navbar-search-custom" action="search-results.html" data-search-live="rd-search-results-live" method="GET">
+                    <div class="form-group">
+                      <input placeholder="Buscar" class="rd-navbar-search-form-input form-control form-control-gray-lightest" type="text" name="search" autocomplete="off">
+                      <button type="submit" class="search-button"><span class="icon icon-xs fa fa-search"></span></button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 col-xl-7 col-xxl-8 offset-top-60 offset-xl-top-0">
+              <div class="row justify-content-sm-center justify-content-md-start justify-content-lg-center inset-xxl-left-70 row-60">
+                <div class="col-md-6 col-lg-4"><span class="icon icon-lg icon-circle icon-white shadow-drop mdi mdi-magnify text-primary"></span>
+                  <div class="offset-top-25 offset-md-top-35 inset-xxl-left-15 inset-xxl-right-15">
+                    <h6>Busca</h6>
+                    <hr class="divider divider-xs bg-bermuda offset-top-15">
+                    <p class="offset-top-15 offset-md-top-25">Encuentra algo que te guste.</p>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4"><span class="icon icon-lg icon-circle icon-white shadow-drop mdi mdi-account text-primary"></span>
+                  <div class="offset-top-25 offset-md-top-35 inset-xxl-left-15 inset-xxl-right-15">
+                    <h6>Personaliza</h6>
+                    <hr class="divider divider-xs bg-bermuda offset-top-15">
+                    <p class="offset-top-15 offset-md-top-25">Con las variedades de colores y tamaños.</p>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4"><span class="icon icon-lg icon-circle icon-white shadow-drop mdi mdi-cart text-primary"></span>
+                  <div class="offset-top-25 offset-md-top-35 inset-xxl-left-15 inset-xxl-right-15">
+                    <h6>Compra</h6>
+                    <hr class="divider divider-xs bg-bermuda offset-top-15">
+                    <p class="offset-top-15 offset-md-top-25">Compra y recibe en tu hogar en un tiempo máximo de 10 días.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-80 section-md-120" id="product-section">
+      <div class="inset-lg-left-35 inset-xxl-left-125 inset-lg-right-35 inset-xxl-right-125">
+        <div class="container-wide container-wide-custom">
+          <hr class="divider bg-bermuda">
+          <div class="offset-top-20">
+            <h3>Los más recomendados</h3>
+          </div>
+          <div class="row justify-content-sm-center justify-content-xl-start text-left offset-top-35 offset-md-top-60 row-50">
+            {% for tshirt in tshirts %}
+              <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="{% url 'product-detail' slug=tshirt.slug %}">
+                  <div class="card">
+                    <img src="{{ tshirt.image.url }}" class="card-img-top" alt="{{tshirt.name}}">
+                    <div class="card-body">
+                      <h6 class="card-title">{{tshirt.name}}<br><br><small class="card-subtitle">por {{tshirt.user.username}}</small></h6>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+          {% comment %} <a class="btn btn-width-200 btn-bermuda offset-top-35 offset-md-top-65" href="events.html">view all events</a> {% endcomment %}
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

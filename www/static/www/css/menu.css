@@ -1,0 +1,44 @@
+.cb-mb {
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    margin-top: -3px;
+    margin-right: 15px;
+}
+
+.cb {
+    cursor: pointer;
+    color: rgb(71, 71, 73);
+    background: transparent;
+    border: none;
+    vertical-align: middle;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    line-height: 26px;
+}
+
+.cb::before {
+    content: attr(data-counter);
+    background-color: red;
+    display: block;
+    position: absolute;
+    border-radius: 100%;
+    min-width: 1.6em;
+    height: 1.6em;
+    line-height: 1.5em;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+}
+
+.cb-mb::before {
+    right: -0.3em;
+    top: -0.3em;
+    color: white;
+}
+
+.cb-desk::before {
+    top: 2.8em;
+    right: 1.2em;
+}

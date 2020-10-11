@@ -1,0 +1,48 @@
+.page-content {
+    background-color: #f6f6f9;
+}
+.btn {
+    min-width: 50px;
+}
+.input-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-control.quantity {
+    width: 20%;
+    min-width: 40px;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 0;
+}
+
+.plus, .minus {
+    border: 1px solid #b6b6b6
+}
+
+.color {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 100%;
+}
+
+.color-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
