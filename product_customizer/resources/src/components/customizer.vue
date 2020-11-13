@@ -61,7 +61,7 @@
 
 <script>
 import { svg2png } from "svg-png-converter";
-import htmlToImage from "html-to-image";
+import {toJpeg} from 'html-to-image';
 // import * as downloadjs from "downloadjs/download";
 export default {
   data() {
@@ -102,7 +102,7 @@ export default {
       });
     },
     async htmlToJpeg() {
-      const dataURL = await htmlToImage.toJpeg(this.$refs.productImage);
+      const dataURL = await toJpeg(this.$refs.productImage);
       const res = await fetch(dataURL);
       const blob = await res.blob();
       return new File([blob], 'product_image.jpg', {type: "image/jpeg"});

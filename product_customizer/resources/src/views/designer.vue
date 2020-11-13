@@ -58,7 +58,7 @@ export default {
       formData.set("price", this.$store.state.price);
       formData.set("duration", this.$store.state.duration);
       formData.set("print_image", printImageFile);
-      formData.set("product_image", productImageFile);
+      formData.set("image", productImageFile);
 
       const csrftoken = Cookies.get("csrftoken");
       const res = await fetch("/shop/create-product/", {
@@ -73,8 +73,8 @@ export default {
         this.$toasted.success("Producto creado");
       } else {
         const errors = await res.json();
-        Object.entries(errors).forEach(error => {
-          this.$toasted.error(error[1]);
+        Object.keys(errors).forEach(k => {
+          this.$toasted.error(`${k}: ${errors[k][0]}`)
         });
       }
       this.showLoader = false;
