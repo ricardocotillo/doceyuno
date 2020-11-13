@@ -9,15 +9,21 @@ def cart(req):
             'item_count': 0,
         }
         return {'cart': data}
-        
-    cart = Cart.objects.get(user=req.user)
+    
+    try:
+        cart = Cart.objects.get(user=req.user)
+    except:
+        cart = None
     data = {
-        'content': json.loads(cart.cart),
-        'sub_total': cart.sub_total(),
-        'item_count': cart.item_count(),
+        'content': json.loads(cart.cart) if cart else [],
+        'sub_total': cart.sub_total() if cart else 0.0,
+        'item_count': cart.item_count() if cart else 0,
     }
     return {'cart': data}
 
 def store(req):
-    store = Store.objects.get()
+    try:
+        store = Store.objects.get()
+    except:
+        store = {}
     return {'store': store}
