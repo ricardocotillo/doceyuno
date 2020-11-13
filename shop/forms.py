@@ -6,7 +6,7 @@ class TshirtForm(forms.ModelForm):
     class Meta:
         model = Tshirt
         fields = ('user', 'slug', 'name', 'description', 'price',
-                  'default_color', 'colors', 'print_image', 'image',)
+                  'default_color', 'colors', 'print_image', 'image', 'end_date',)
 
 
 class CartAddProductForm(forms.Form):
