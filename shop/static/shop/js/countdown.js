@@ -7,18 +7,20 @@ const secondsDisplay = document.getElementById('countdown-seconds');
 const endDate = countdownWrapper.dataset.endDate;
 const countDownDate = Date.parse(endDate);
 
-const x = setInterval(function () {
-    const now = new Date().getTime();
+if (countDownDate > Date.now()) {
+    const x = setInterval(function () {
+        const now = new Date().getTime();
 
-    const distance = countDownDate - now;
+        const distance = countDownDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    daysDisplay.innerText = days;
-    hoursDisplay.innerText = hours;
-    minutesDisplay.innerText = minutes;
-    secondsDisplay.innerText = seconds;
-}, 1000)
+        daysDisplay.innerText = days;
+        hoursDisplay.innerText = hours;
+        minutesDisplay.innerText = minutes;
+        secondsDisplay.innerText = seconds;
+    }, 1000);
+}
