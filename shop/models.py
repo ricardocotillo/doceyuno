@@ -8,12 +8,17 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 from customauth.models import User
 
+
 class Store(models.Model):
     name = models.CharField(max_length=100)
     base_price = models.DecimalField(decimal_places=2, max_digits=5)
     currency = models.CharField(max_length=3)
     currency_symbol = models.CharField(max_length=3)
     shipping_cost = models.DecimalField(decimal_places=2, max_digits=5)
+
+    def __str__(self):
+        return self.name
+
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -33,6 +38,7 @@ class Cart(models.Model):
         prices = [x['total_price'] for x in cart]
         sub_total = sum(prices)
         return sub_total
+
 
 class Color(models.Model):
     cyan = models.IntegerField(
@@ -69,7 +75,6 @@ def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join('media', filename)
-
 
 
 class Product(models.Model):
