@@ -14,7 +14,8 @@ class Store(models.Model):
     base_price = models.DecimalField(decimal_places=2, max_digits=5)
     currency = models.CharField(max_length=3)
     currency_symbol = models.CharField(max_length=3)
-    shipping_cost = models.DecimalField(decimal_places=2, max_digits=5, null=True, blank=True)
+    shipping_cost = models.DecimalField(
+        decimal_places=2, max_digits=5, null=True, blank=True)
 
     def __str__(self):
         return self.name
