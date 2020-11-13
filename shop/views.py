@@ -137,16 +137,15 @@ def store_info(req):
 
 def create_product(req):
     if req.method == 'POST':
+
         data = {
-            'user': req.user,
+            'user': req.user.id,
             'name': req.POST.get('name'),
             'slug': slugify(req.POST.get('name')),
             'description': req.POST.get('description'),
             'price': req.POST.get('price'),
             'default_color': Color.objects.get(
                 hex_code=req.POST.get('default_color')),
-            'print_image': req.FILES['print_image'],
-            'product_image': req.FILES['product_image'],
             'colors': Color.objects.filter(hex_code__in=req.POST.getlist('colors'))
         }
 
@@ -154,13 +153,10 @@ def create_product(req):
             data['end_date'] = datetime.now(
             ) + timedelta(days=int(req.POST.get('duration')))
 
-        form = TshirtForm(data)
+        form = TshirtForm(data=data, files=req.FILES)
 
         if form.is_valid():
             form.save()
-
-            for color in colors:
-                tshirt.colors.add(color)
 
             return HttpResponse()
         else:
