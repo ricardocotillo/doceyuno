@@ -23,8 +23,8 @@ def cart_add(req, product_id):
     form = CartAddProductForm(req.POST)
     if form.is_valid():
         cd = form.cleaned_data
+        cart_items = cart.cart if cart.cart else []
         if cart.cart:
-            cart_items = json.loads(cart.cart)
             exists = False
             index = 0
             for i, item in enumerate(cart_items):
@@ -49,7 +49,7 @@ def cart_add(req, product_id):
                     'total_price': cd['quantity'] * product.price
                 }
                 cart_items.append(item)
-            cart.cart = json.dumps(cart_items)
+            cart.cart = cart_items
             cart.save()
         else:
             item = {
@@ -63,7 +63,7 @@ def cart_add(req, product_id):
                 'price': product.price,
                 'total_price': cd['quantity'] * product.price
             }
-            cart_items = json.dumps([item])
+            cart_items.append(item)
             cart.cart = cart_items
             cart.save()
         return HttpResponseRedirect(reverse_lazy('product-detail', args=[product.slug]))
@@ -73,7 +73,7 @@ def cart_update(req, item_uuid):
     data = json.loads(req.body)
     quantity = data['quantity']
     cart = Cart.objects.get(user=req.user)
-    cart_items = json.loads(cart.cart)
+    cart_items = cart.cart
     updated_item = {}
     for item in cart_items:
         if item['uuid'] == str(item_uuid):
@@ -81,20 +81,20 @@ def cart_update(req, item_uuid):
             item['total_price'] = quantity * item['price']
             updated_item = item
             break
-    cart.cart = json.dumps(cart_items)
+    cart.cart = cart_items
     cart.save()
     return JsonResponse(updated_item)
 
 def cart_remove(req, item_uuid):
     cart = Cart.objects.get(user=req.user)
-    cart_items = json.loads(cart.cart)
+    cart_items = cart.cart
     index = 0
     for i, item in enumerate(cart_items):
         if item['uuid'] == str(item_uuid):
             index = i
             break
     cart_items.pop(index)
-    cart.cart = json.dumps(cart_items)
+    cart.cart = cart_items
     cart.save()
     return HttpResponseRedirect(reverse_lazy('cart'))
 

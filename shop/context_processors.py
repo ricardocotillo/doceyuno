@@ -15,7 +15,7 @@ def cart(req):
     except:
         cart = None
     data = {
-        'content': json.loads(cart.cart) if cart else [],
+        'content': cart.cart if cart else [],
         'sub_total': cart.sub_total() if cart else 0.0,
         'item_count': cart.item_count() if cart else 0,
     }

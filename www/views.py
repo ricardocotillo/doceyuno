@@ -12,4 +12,4 @@ def home(req):
     context = {
         'tshirts': Tshirt.objects.order_by('date')[:4]
     }
-    return render(req, template_name='www/index.html', context=context)
+    return render(req, 'www/index.html', context)

@@ -1,10 +1,12 @@
 import uuid
 import os
+from decimal import Decimal
 
 import simplejson as json
 
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.serializers.json import DjangoJSONEncoder
 
 from customauth.models import User
 
@@ -23,20 +25,20 @@ class Store(models.Model):
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cart = models.TextField(blank=True, null=True)
+    cart = models.JSONField(encoder=DjangoJSONEncoder, default=list)
 
     def __str__(self):
         return self.user.email
 
     def item_count(self):
-        cart = json.loads(self.cart)
+        cart = self.cart
         quantities = [x['quantity'] for x in cart]
         item_count = sum(quantities)
         return item_count
 
     def sub_total(self):
-        cart = json.loads(self.cart)
-        prices = [x['total_price'] for x in cart]
+        cart = self.cart
+        prices = [Decimal(x['total_price']) for x in cart]
         sub_total = sum(prices)
         return sub_total
 
