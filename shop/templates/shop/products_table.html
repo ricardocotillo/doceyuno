@@ -1,3 +1,4 @@
+{% load shop_extras %}
 <div class="col-lg-8">
     <div class="card mb-4">
       <div class="card-body">
@@ -40,12 +41,22 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <a href="{% url 'cart-remove' item.uuid %}?next={{item.product_id}}" type="submit"
+                    <a href="{% if user.is_authenticated %}{% url 'cart-remove' item.uuid %}?next={{item.product_id}}{% endif %}" type="submit"
                       class="card-link-secondary small text-uppercase mr-3"><span class="fas fa-trash mr-1"></span>
                       Remover</a>
                   </div>
-                  <p class="mb-0"><span><strong class="total-price">{{store.currency_symbol}}
-                        {{item.total_price|format_to_two}}</strong></span></p>
+                  <p class="mb-0">
+                    <span>
+                      <strong class="total-price">
+                        {{store.currency_symbol}} 
+                        {% if user.is_authenticated %}
+                          {{item.total_price|format_to_two}}
+                        {% else %}
+                          {{item.totalPrice}}
+                        {% endif %}
+                      </strong>
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -81,8 +92,12 @@
             <div>
               <strong>Monto total</strong>
             </div>
-            <span><strong id="total-amount">{{store.currency_symbol}}
-                {{cart.sub_total|decimal_sum:store.shipping_cost}}</strong></span>
+            <span>
+              <strong id="total-amount">
+                {{store.currency_symbol}}
+                {{cart.sub_total|decimal_sum:store.shipping_cost}}
+              </strong>
+            </span>
           </li>
         </ul>
 

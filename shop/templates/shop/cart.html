@@ -1,6 +1,5 @@
 {% extends 'www/base.html' %}
 {% load static %}
-{% load shop_extras %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'shop/css/cart.css' %}">
@@ -11,7 +10,7 @@
   <br><br><br>
   <div class="container">
     <section class="mt-5 mb-4">
-      <div class="row">
+      <div class="row" id="products-table-wrapper" data-pt-url="{% url 'get-products-table' %}">
         {% if cart.content|length > 0 %}
           {% include 'shop/products_table.html' %}
         {% else %}

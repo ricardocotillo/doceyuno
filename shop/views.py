@@ -159,3 +159,12 @@ def create_product(req):
             return HttpResponse()
         else:
             return JsonResponse(form.errors, status=400)
+
+def get_products_table(req):
+    cart_items = json.loads(req.body)
+    ctx = {
+        'content': cart_items,
+        'sub_total': sum([x['totalPrice'] for x in cart_items ]),
+        'item_count': len(cart_items),
+    }
+    return render(req, 'shop/products_table.html', {'cart': ctx})
