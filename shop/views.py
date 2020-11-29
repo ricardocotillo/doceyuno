@@ -3,7 +3,6 @@ import uuid
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
 from django.utils.text import slugify
 from django.shortcuts import render, redirect, get_object_or_404
@@ -99,7 +98,6 @@ def cart_remove(req, item_uuid):
     return HttpResponseRedirect(reverse_lazy('cart'))
 
 
-@login_required
 def cart_detail(req):
     return render(req, 'shop/cart.html')
 
