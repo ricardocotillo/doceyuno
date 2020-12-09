@@ -129,12 +129,10 @@
     </div>
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
-    <!-- Java script-->
+    <!-- Javascript-->
     <script src="{% static 'www/js/core.min.js' %}"></script>
     <script src="{% static 'www/js/script.js' %}"></script>
-    {% if not user.is_authenticated %}
-      <script src="{% static 'www/js/initCartCounter.js' %}"></script>
-    {% endif %}
+    <script src="{% static 'www/js/initCartCounter.js' %}"></script>
     {% block js %}
     {% endblock js %}
   </body>

@@ -77,7 +77,7 @@ def cart_update(req, item_uuid):
     for item in cart_items:
         if item['uuid'] == str(item_uuid):
             item['quantity'] = quantity
-            item['total_price'] = quantity * item['price']
+            item['total_price'] = quantity * Decimal(item['price'])
             updated_item = item
             break
     cart.cart = cart_items

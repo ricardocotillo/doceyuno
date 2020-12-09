@@ -20,10 +20,12 @@ qtyBtn.forEach(function (qb) {
 // lógica para actualizar carrito
 const updateBtn = document.querySelector('#actualizar')
 updateBtn.addEventListener('click', async function (e) {
+  const cartCounters = document.querySelectorAll('.cart-counter')
   const subTotalNode = document.querySelector('#subtotal')
   const totalNode = document.querySelector('#total-amount')
   const productInfo = document.querySelectorAll('.product-info')
   let cartSubTotal = 0
+  let sum = 0
   for (const el of productInfo) {
     const quantityInput = el.querySelector('.quantity')
     const itemUuid = quantityInput.dataset.id
@@ -38,9 +40,11 @@ updateBtn.addEventListener('click', async function (e) {
       body: JSON.stringify({ quantity: parseInt(quantity) })
     })
     const data = await res.json()
-    cartSubTotal += data.total_price
-    totalPrice.textContent = `S/ ${data.total_price.toFixed(2)}`
+    cartSubTotal += parseFloat(data.total_price)
+    totalPrice.textContent = `S/ ${data.total_price}`
+    sum += data.quantity
   }
   subTotalNode.textContent = `S/ ${cartSubTotal.toFixed(2)}`
   totalNode.textContent = `S/ ${(cartSubTotal + 10).toFixed(2)}`
+  cartCounters.forEach(cc => cc.dataset.counter = sum)
 })
