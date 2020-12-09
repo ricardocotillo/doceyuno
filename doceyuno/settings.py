@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'product_customizer',
     'customauth',
     'accounts',
+    'checkout',
     
     'django.contrib.admin',
     'django.contrib.auth',

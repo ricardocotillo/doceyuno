@@ -14,7 +14,6 @@ from django.views.decorators.http import require_POST
 from .models import Tshirt, Store, Color, Cart
 from .forms import TshirtForm, CartAddProductForm
 
-
 @require_POST
 def cart_add(req, product_id):
     cart = Cart.objects.get_or_create(user=req.user)[0]
