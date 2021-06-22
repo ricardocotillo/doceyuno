@@ -50,6 +50,7 @@
                 @resizing="onResize"
                 @deactivated="editing = false"
                 :handles="['tl', 'tr', 'br', 'bl']"
+                class-name-active="my-active-class"
               ></vue-draggable-resizable>
             </div>
           </div>
@@ -269,6 +270,10 @@ export default {
   pointer-events: none;
   position: relative;
   width: 100%;
+}
+
+.my-active-class {
+  cursor: move;
 }
 
 img {
