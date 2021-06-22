@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from shop.models import Store, Color, Size
 
-colors: list[dict] = [
+colors = [
     {
         "cyan": 0,
         "magenta": 0,
