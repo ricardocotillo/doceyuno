@@ -28,6 +28,7 @@
                 :transform="`matrix(${(3508/image.width) * editInfo.scaleX} 0 0 ${(3508/image.width) * editInfo.scaleX} ${3508 * editInfo.transX} ${3508 * editInfo.transY})`"
               >
                 <image :href="image.url" :width="image.width" :height="image.height" />
+                <rect :width="image.width" :height="image.height" />
               </g>
             </svg>
             <img :src="require(`@/assets/${front ? 'front' : 'back'}.png`)" alt class="mask" />
@@ -36,7 +37,7 @@
               class="printableArea outlined"
               :style="{top: `${baseWidth/3.5}px`, left: `${(baseWidth - printableWidth)/1.93}px`, width: `${printableWidth}px`, height: `${printableHeight}px`}"
             >
-              <vue-draggable-resizable
+              <!-- <vue-draggable-resizable
                 v-if="editing"
                 :w="selectBoxWidth"
                 :h="selectBoxHeight"
@@ -51,7 +52,7 @@
                 @deactivated="editing = false"
                 :handles="['tl', 'tr', 'br', 'bl']"
                 class-name-active="my-active-class"
-              ></vue-draggable-resizable>
+              ></vue-draggable-resizable> -->
             </div>
           </div>
         </div>
@@ -136,20 +137,20 @@ export default {
     ratio() {
       return 3508 / this.image.width;
     },
-    selectBoxWidth() {
-      return (
-        this.image.width *
-        ((this.printableWidth * this.ratio) / 3508) *
-        this.selectBox.w
-      );
-    },
-    selectBoxHeight() {
-      return (
-        this.image.height *
-        ((this.printableWidth * this.ratio) / 3508) *
-        this.selectBox.w
-      );
-    },
+    // selectBoxWidth() {
+    //   return (
+    //     this.image.width *
+    //     ((this.printableWidth * this.ratio) / 3508) *
+    //     this.selectBox.w
+    //   );
+    // },
+    // selectBoxHeight() {
+    //   return (
+    //     this.image.height *
+    //     ((this.printableWidth * this.ratio) / 3508) *
+    //     this.selectBox.w
+    //   );
+    // },
     image() {
       return this.$store.state.image;
     },
@@ -278,5 +279,12 @@ export default {
 
 img {
   border: 0;
+}
+
+rect {
+  stroke-width: 20px;
+  stroke: black;
+  fill:transparent;
+  stroke-dasharray: 60;
 }
 </style>
