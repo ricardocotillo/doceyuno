@@ -15,9 +15,10 @@ class AccountView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         store = Store.objects.get()
         context['store'] = store
-
-        context['lifetime_sales'] = reduce(lambda a, b: (a.total_sales * (a.price - store.base_price)) + (b.total_sales * (b.price - store.base_price)), context['object_list'])
-
+        if context['object_list'].count() > 0:
+            context['lifetime_sales'] = reduce(lambda a, b: (a.total_sales * (a.price - store.base_price)) + (b.total_sales * (b.price - store.base_price)), context['object_list'])
+        else:
+            context['lifetime_sales'] = '0.00'
         return context
 
     def get_queryset(self):
