@@ -72,7 +72,7 @@
                   <th scope="col">Precio</th>
                   <th scope="col">Ventas</th>
                   <th scope="col">Fecha de fin</th>
-                  <th scope="col"></th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,8 +84,9 @@
                   <td>{{store.currency_symbol}} {{tshirt.price}}</td>
                   <td>{{tshirt.total_sales}}</td>
                   <td>{% if tshirt.end_date %}{{tshirt.end_date}} {% else %}Indefinido{% endif %}</td>
-                  <td><span data-id="{{tshirt.id}}" data-toggle="modal" data-target="#delete-modal"
-                      class="fas fa-trash text-danger delete-icon"></span></td>
+                  <td>
+                    <span data-id="{{tshirt.id}}" data-toggle="modal" data-target="#delete-modal" class="fas fa-trash text-danger delete-icon"></span>
+                  </td>
                 </tr>
                 {% endfor %}
                 {% endtimezone %}
