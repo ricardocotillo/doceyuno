@@ -1,6 +1,5 @@
 from functools import reduce
-
-from django.shortcuts import render
+from django.db.models import F, Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
@@ -15,10 +14,9 @@ class AccountView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         store = Store.objects.get()
         context['store'] = store
-        if context['object_list'].count() > 0:
-            context['lifetime_sales'] = reduce(lambda a, b: (a.total_sales * (a.price - store.base_price)) + (b.total_sales * (b.price - store.base_price)), context['object_list'])
-        else:
-            context['lifetime_sales'] = '0.00'
+        if self.object_list.count() > 0:
+            context['lifetime_sales'] = self.object_list.annotate(lifetime_sales=(F('total_sales') * (F('price') - store.base_price)))\
+                .aggregate(total_lifetime_sales=Sum('lifetime_sales'))['total_lifetime_sales']
         return context
 
     def get_queryset(self):
