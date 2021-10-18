@@ -83,7 +83,9 @@
                   <td><a href="{% url 'product-detail' tshirt.slug %}">{{tshirt.name}}</a></td>
                   <td>{{store.currency_symbol}} {{tshirt.price}}</td>
                   <td>{{tshirt.total_sales}}</td>
-                  <td>{% if tshirt.end_date %}{{tshirt.end_date}} {% else %}Indefinido{% endif %}</td>
+                  <td>
+                    {% if tshirt.end_date %}{{tshirt.end_date}}{% else %}Indefinido{% endif %}
+                  </td>
                   <td>
                     <span data-id="{{tshirt.id}}" data-toggle="modal" data-target="#delete-modal" class="fas fa-trash text-danger delete-icon"></span>
                   </td>

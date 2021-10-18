@@ -143,7 +143,6 @@ def create_product(req):
             'price': req.POST.get('price'),
             'default_color': Color.objects.get(hex_code=req.POST.get('default_color')),
             'colors': Color.objects.filter(hex_code__in=req.POST.getlist('colors')),
-            'active': True if req.user.mercadopago_access_token else False,
         }
 
         if req.POST.get('duration') != "0":
