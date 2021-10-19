@@ -55,9 +55,9 @@
                     {% if user.is_authenticated %}
                     <li><a class="btn btn-xs text-secondary" href="#">Mi cuenta</a>
                       <ul class="rd-navbar-dropdown">
-                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
                         <li><a href="#">Mis Compras</a></li>
-                        <li><a href="#">Cobrar</a></li>
+                        <li><a href="{% url 'accounts:withdrawal' %}">Cobrar</a></li>
                         <li><a href="{% url 'logout' %}">Salir</a></li>
                       </ul>
                     </li>

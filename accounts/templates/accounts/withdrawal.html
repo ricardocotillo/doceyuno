@@ -1,0 +1,8 @@
+{% extends 'www/base.html' %}
+
+{% block content %}
+  {% if user.mercadopago_public_key %}
+  {% else %}
+    <i>Para poder realizar un retiro debes primero tene una cuenta en <a href="#">Mercado pago</a></i>
+  {% endif %}
+{% endblock content %}

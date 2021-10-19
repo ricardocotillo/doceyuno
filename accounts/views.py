@@ -1,9 +1,9 @@
-from functools import reduce
 from django.db.models import F, Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from shop.models import Tshirt, Store
+from customauth.models import User
 
 
 class AccountView(LoginRequiredMixin, ListView):
@@ -21,3 +21,10 @@ class AccountView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Tshirt.objects.filter(user=self.request.user)
+
+class WithdrawalView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'accounts/withdrawal.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
