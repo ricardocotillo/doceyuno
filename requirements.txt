@@ -3,3 +3,4 @@ Django>=4.0
 Pillow>=9.1
 simplejson>=3.17
 requests>=2.27
+mercadopago>=2.1
