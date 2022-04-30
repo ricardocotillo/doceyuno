@@ -26,6 +26,8 @@
 {% endblock content %}
 
 {% block js %}
+{{ mercadopago_public|json_script:'mercadopagoPublic' }}
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 {% if user.is_authenticated %}
   <script src="{% static 'shop/js/cart.js' %}"></script>
 {% else %}

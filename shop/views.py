@@ -1,3 +1,4 @@
+from django.conf import settings
 import simplejson as json
 import uuid
 from datetime import datetime, timedelta
@@ -98,7 +99,10 @@ def cart_remove(req, item_uuid):
 
 
 def cart_detail(req):
-    return render(req, 'shop/cart.html')
+    ctx = {
+        'mercadopago_public': settings.MERCADOPAGO_PUBLIC,
+    }
+    return render(req, 'shop/cart.html', ctx)
 
 
 class ProductDetailView(DetailView):

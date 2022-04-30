@@ -1,4 +1,8 @@
+const mercadopagoPublic = JSON.parse(document.querySelector('#mercadopagoPublic').textContent)
+const mp = new MercadoPago(mercadopagoPublic)
+console.log(mp)
 const qtyBtn = document.querySelectorAll('.qty-btn')
+
 qtyBtn.forEach(function (qb) {
   qb.addEventListener('click', function (e) {
     e.preventDefault()
