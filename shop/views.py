@@ -4,11 +4,10 @@ import uuid
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from django.core.serializers import serialize
 from django.utils.text import slugify
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, DeleteView
 from django.views.decorators.http import require_POST
 
@@ -99,10 +98,7 @@ def cart_remove(req, item_uuid):
 
 
 def cart_detail(req):
-    ctx = {
-        'mercadopago_public': settings.MERCADOPAGO_PUBLIC,
-    }
-    return render(req, 'shop/cart.html', ctx)
+    return render(req, 'shop/cart.html')
 
 
 class ProductDetailView(DetailView):

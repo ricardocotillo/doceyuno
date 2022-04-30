@@ -24,7 +24,7 @@ class Store(models.Model):
 
 
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
     cart = models.JSONField(encoder=DjangoJSONEncoder, default=list)
 
     def __str__(self):
